@@ -5,21 +5,6 @@ from snowflake.snowpark.dataframe import DataFrame as snow_dataframe
 import requests
 import pandas as pd
 
-DATA = {
-  "family": "Rosaceae",
-  "genus": "Malus",
-  "id": 1,
-  "name": "Apple",
-  "nutrition": {
-    "carbs": 14.8,
-    "fat": 0.21,
-    "protein": 0.19,
-    "sugar": 12.2
-  },
-  "order": "Rosales"
-}
-
-
 # Write directly to the app
 st.title(":cup_with_straw: Customize Your Smoothie!:cup_with_straw:")
 st.write(
@@ -61,7 +46,6 @@ if ingredients_list:
         st.subheader(fruit_chosen + ' Nutrition Information')
         smoothiefroot_response = requests.get(f"https://my.smoothiefroot.com/api/fruit/{fruit_chosen}")
         sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
-        # sf_df = st.dataframe(data=DATA, use_container_width=True)
     
     st.write(ingredients_string)
     my_insert_stmt = """
